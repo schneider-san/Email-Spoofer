@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // See more https://stackoverflow.com/questions/179014/how-to-change-envelope-from-address-using-php-mail
     $xsender = "-f ".$spoofed_email;
     
-    mail($reciever_email, $subject, $message, $headers,$xsender );
+    mail($reciever_email, $subject, $message, $headers, $xsender );
 }
 ?>
 <html lang="en">
@@ -42,19 +42,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h3 id="header">Em@il $poofer</h3>
     <form action="index.php" method="post">
-        <label for="sender_email">Spoofer's Email:</label>
-        <input type="email" name="sender_email" id="sender_email">
-        <label for="spoofed_name">Spoofed Name:</label>
-        <input type="text" name="spoofed_name" id="spoofed_name">
-        <label for="spoofed_email">Spoofed Email:</label>
-        <input type="email" name="spoofed_email" id="spoofed_email">
-        <label for="receiver_email">Receiver's Email:</label>
-        <input type="email" name="receiver_email" id="receiver_email">
-        <label for="subject">Subject:</label>
-        <input type="text" name="subject" id="subject">
-        <label for="message">Message:</label>
-        <textarea name="message" id="message" cols="62" rows="10"></textarea>
-        <button class="send-btn">Send Email</button>
+        <div class="box">
+            <div class="inner-box">
+                <label for="sender_email">Spoofer's Email</label>
+                <input type="email" name="sender_email" id="sender_email">
+            </div>
+            <div class="inner-box">
+                <label for="receiver_email">Receiver's Email</label>
+                <input type="email" name="receiver_email" id="receiver_email">
+            </div>
+            <div class="inner-box">
+                <label for="spoofed_name">Spoofed Name</label>
+                <input type="text" name="spoofed_name" id="spoofed_name">
+            </div>
+            <div class="inner-box">
+                <label for="spoofed_email">Spoofed Email</label>
+                <input type="email" name="spoofed_email" id="spoofed_email">
+            </div>
+            <div class="inner-box">
+                <label for="subject">Subject</label>
+                <input type="text" name="subject" id="subject">
+            </div>
+            <div class="inner-box">
+                <button class="send-btn">Send Email</button>
+            </div>
+            <div class="inner-box">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="62" rows="10"></textarea>
+            </div>
+        </div>
     </form>
 </body>
 </html>
