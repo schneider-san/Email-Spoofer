@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sender_email = $_POST['sender_email'];
-    $sender_name = $_POST['sender_name'];
+    $spoofed_name = $_POST['spoofed_name'];
     $spoofed_email = $_POST['spoofed_email'];
     $reciever_email = $_POST['reciever_email'];
     $subject = $_POST['subject'];
@@ -44,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form action="index.php" method="post">
         <label for="sender_email">Spoofer's Email:</label>
         <input type="email" name="sender_email" id="sender_email">
-        <label for="sender_name">Sender's Name:</label>
-        <input type="text" name="sender_name" id="sender_name">
-        <label for="sender_email">Sender's Email:</label>
+        <label for="spoofed_name">Spoofed Name:</label>
+        <input type="text" name="spoofed_name" id="spoofed_name">
+        <label for="spoofed_email">Spoofed Email:</label>
         <input type="email" name="spoofed_email" id="spoofed_email">
         <label for="receiver_email">Receiver's Email:</label>
         <input type="email" name="receiver_email" id="receiver_email">
