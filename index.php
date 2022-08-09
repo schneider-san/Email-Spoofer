@@ -1,13 +1,34 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sender_name = $_POST['sender_name'];
     $sender_email = $_POST['sender_email'];
+    $sender_name = $_POST['sender_name'];
+    $spoofed_email = $_POST['spoofed_email'];
     $reciever_email = $_POST['reciever_email'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
-
-    $headers = "From: $sender_name "."<".$sender_email.">\r\n";
-    mail($reciever_email, $subject, $message, $headers );
+    
+    $emails = array($spoofed_email, $sender_email);
+    
+    // Setting basic headers
+    $headers = "From: $sender_name "."<".$spoofed_email.">\r\n";
+    $headers .= "Reply-To: ".implode (",", $emails)."\r\n" // If you really spoof, you'd also want a reply. No ?
+    
+    // Setting email priority Read more https://stackoverflow.com/questions/4169605/php-mail-how-to-set-priority
+    $headers .= "X-Priority: 1\r\n"; // Very high priority!
+    $headers .= "X-MSMail-Priority: High\r\n";
+    $headers .= "Importance: High\r\n";
+    
+    // Setting additional headers
+    $headers .= "X-Mailer: Microsoft Outlook 16.0\r\n"; // Spoof any trusted email client Here
+    $headers .= "Return-Path: ".$sender_email."\r\n"; // Return path for errors
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+    
+    // Don't forget to spoof the X-Sender header. We'll set it using the 5th parameter of php mailer
+    // See more https://stackoverflow.com/questions/179014/how-to-change-envelope-from-address-using-php-mail
+    $xsender = "-f ".$spoofed_email;
+    
+    mail($reciever_email, $subject, $message, $headers,$xsender );
 }
 ?>
 <html lang="en">
@@ -21,10 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h3 id="header">Em@il $poofer</h3>
     <form action="index.php" method="post">
+        <label for="sender_email">Spoofer's Email:</label>
+        <input type="email" name="sender_email" id="sender_email">
         <label for="sender_name">Sender's Name:</label>
         <input type="text" name="sender_name" id="sender_name">
         <label for="sender_email">Sender's Email:</label>
-        <input type="email" name="sender_email" id="sender_email">
+        <input type="email" name="spoofed_email" id="spoofed_email">
         <label for="receiver_email">Receiver's Email:</label>
         <input type="email" name="receiver_email" id="receiver_email">
         <label for="subject">Subject:</label>
