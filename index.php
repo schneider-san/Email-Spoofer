@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Setting basic headers
     $headers = "From: $sender_name "."<".$spoofed_email.">\r\n";
-    $headers .= "Reply-To: ".implode (",", $emails)."\r\n" // If you really spoof, you'd also want a reply. No ?
+    $headers .= "Reply-To: ".implode (",", $emails)."\r\n"; // If you really spoof, you'd also want a reply. No ?
     
     // Setting email priority Read more https://stackoverflow.com/questions/4169605/php-mail-how-to-set-priority
     $headers .= "X-Priority: 1\r\n"; // Very high priority!
