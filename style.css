@@ -1,4 +1,4 @@
-body{margin: 0;padding: 0;background: #663399;font-family: sans-serif;}
+body{width: auto;padding: 0;background: #663399;font-family: sans-serif;}
 #header{
     width: 100%;
     height: 50px;
@@ -7,6 +7,8 @@ body{margin: 0;padding: 0;background: #663399;font-family: sans-serif;}
     text-align: center;
     font-size: 3rem;
 }
+.box{display: block;width: 50%;margin: -100px 0 0 50px;padding: 0;font-family: sans-serif;}
+.box .inner-box{display: inline-block;}
 form{
     width: 100%;
     height: 100%;
@@ -26,34 +28,51 @@ label{
 input{
     width: 90%;
     height: 40px;
-    border: 3px solid #111;
+    border: 3px solid #fff;
     border-radius: 9px;
     padding: 0 10px;
     font-size: 1.2rem;
-    background-color: #887;
+    background-color: #666;
+    color: #fff;
 }
 input:focus{
     outline: 3px solid #888;
 }
-*{cursor: default;}
+/*{cursor: cursor;}*/
 #message{
+    color: #fff;
     width: 90%;
     height: 200px;
-    border: 3px solid #111;
+    border: 3px solid #fff;
     border-radius: 9px;
     padding: 0 10px;
     font-size: 1.2rem;
-    background-color: #887;
+    background-color: #666;
 }
 #message:focus{
     outline: 3px solid #888;
 }
 .send-btn{
+    width: 185%;
+    color: #663399;
+    font-weight: bold;
     height: 40px;
-    border: 3px solid #111;
+    border: 3px solid #fff;
     border-radius: 9px;
     padding: 0 10px;
     font-size: 1.2rem;
-    background-color: #887;
+    background-color: #fff;
     margin-top: 10px;
+    cursor: pointer;
 }
+.send-btn:hover{
+    color: #fff;
+    background-color: #42ba96;
+    border: 3px solid #42ba96;
+}
+.send-btn:focus{
+    color: #663399;
+    background-color: #fff;
+    border: 5px solid #42ba96;
+}
+
